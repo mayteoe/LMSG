@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Room Booking Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      color: #6a1b9a;
+      text-align: center;
+    }
+    form {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 600px;
+      margin: 0 auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    input[type="text"], input[type="email"], input[type="date"], input[type="number"], input[type="signature"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .section-title {
+      color: #6a1b9a;
+      margin-top: 20px;
+    }
+    .room-type, .payment-method {
+      display: flex;
+      gap: 15px;
+      margin-top: 5px;
+    }
+    button {
+      margin-top: 20px;
+      background-color: #6a1b9a;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #4a0072;
+    }
+  </style>
+</head>
+<body>
+  <h1>Hotel Room Booking Form</h1>
+
+  <form action="process_booking.php" method="POST">
+    <h3 class="section-title">Guest Information</h3>
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" name="firstName" required>
+
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" name="lastName" required>
+
+    <label for="phone">Phone Number:</label>
+    <input type="text" id="phone" name="phone" required>
+
+    <label for="email">Email Address:</label>
+    <input type="email" id="email" name="email" required>
+
+    <h3 class="section-title">Booking Details</h3>
+    <label for="checkin">Check-in Date:</label>
+    <input type="date" id="checkin" name="checkin" required>
+
+    <label for="checkout">Check-out Date:</label>
+    <input type="date" id="checkout" name="checkout" required>
+
+    <label for="guests">Number of Guests:</label>
+    <input type="number" id="guests" name="guests" min="1" required>
+
+    <label>Room Type:</label>
+    <div class="room-type">
+      <label><input type="radio" name="roomType" value="Single" required> Single</label>
+      <label><input type="radio" name="roomType" value="Double"> Double</label>
+      <label><input type="radio" name="roomType" value="Suite"> Suite</label>
+    </div>
+
+    <h3 class="section-title">Signature</h3>
+    <label for="signature">Guest Signature:</label>
+    <input type="text" id="signature" name="signature">
+
+    <h3 class="section-title">Payment Information</h3>
+    <label for="total">Total Cost $:</label>
+    <input type="number" id="total" name="total" step="0.01" required>
+
+    <label>Payment Method:</label>
+    <div class="payment-method">
+      <label><input type="radio" name="paymentMethod" value="Credit/Debit Card" required> Credit/Debit Card</label>
+      <label><input type="radio" name="paymentMethod" value="Cash"> Cash</label>
+    </div>
+
+    <button type="submit">Submit Booking</button>
+  </form>
+</body>
+</html>
+
+    
+</body>
+</html>
