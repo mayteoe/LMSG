@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Room Booking Form</title>
+    <style>
+        /* Estilos Base */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            color: #6a1b9a;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+
+        /* Contenedor principal del formulario */
+        form {
+            background-color: white;
+            padding: 30px; 
+            border-radius: 10px;
+            max-width: 800px; /* Ancho cómodo para el diseño */
+            margin: 0 auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            
+            /* El formulario principal usa Grid solo para el layout de las secciones */
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            padding-bottom: 0;
+        }
+
+        /* ---------------------------------------------------- */
+        /* ESTRUCTURA PRINCIPAL DE LA REJILLA (DOS COLUMNAS) */
+        /* ---------------------------------------------------- */
+        
+        /* Contenedor para los campos que deben ir en dos columnas */
+        section {
+            display: grid;
+            /* Dos columnas de igual ancho para los campos */
+            grid-template-columns: 1fr 1fr; 
+            gap: 20px 30px; /* Espacio entre filas y columnas */
+        }
+
+        /* Los campos que deben ir en una sola columna ocupan todo el ancho */
+        .full-width-field {
+            grid-column: 1 / -1; /* Ocupa las dos columnas */
+        }
+        
+        /* ---------------------------------------------------- */
+        /* ESTILOS DE LOS CONTROLES */
+        /* ---------------------------------------------------- */
+        
+        .section-title {
+            color: #6a1b9a;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 5px;
+            /* Siempre ocupan el ancho completo de la rejilla */
+            grid-column: 1 / -1;
+        }
+
+        label {
+            display: block; 
+            font-weight: bold;
+            color: #6a1b9a; /* Color de texto morado para las etiquetas */
+            margin-bottom: 5px;
+        }
+        
+        /* Todos los inputs que no sean radio/checkbox/botón */
+        input[type="text"], 
+        input[type="email"], 
+        input[type="date"], 
+        input[type="number"] {
+            width: 100%; 
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            height: 38px;
+        }
+
+        /* Campo de firma y texto de Guest Signature */
+        .signature-group {
+            position: relative;
+        }
+        .guest-signature-text {
+            display: block;
+            text-align: center; /* Centrar debajo del campo */
+            font-size: 0.9em;
+            color: #777;
+            margin-top: 5px;
+        }
+
+        /* Opciones de Radio */
+        .radio-options {
+            display: flex;
+            gap: 15px;
+            margin-top: 5px;
+        }
+        .radio-options label {
+            display: inline-flex;
+            align-items: center;
+            font-weight: normal;
+            color: initial;
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+        .radio-options input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        /* Botón de envío */
+        button {
+            margin-top: 30px;
+            background-color: #6a1b9a;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 40%; /* Centrar y darle un ancho razonable */
+            justify-self: center; /* Centrar el botón en el layout del formulario */
+        }
+
+        button:hover {
+            background-color: #4a0072;
+        }
+
+        /* Imagen inferior */
+        .footer-image {
+            grid-column: 1 / -1; 
+            width: calc(100% + 60px); 
+            margin-left: -30px; 
+            margin-right: -30px;
+            margin-top: 30px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            overflow: hidden;
+        }
+        .footer-image img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hotel Room Booking Form</h1>
+
+    <form action="registro.php" method="POST">
+        
+        <section class="grid-container">
+            
+            <h2 class="section-title">Guest Information</h3>
+            
+            <div>
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" required>
+            </div>
+            
+            <div>
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" required>
+            </div>
+
+            <div>
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" name="phone" required>
+            </div>
+            
+            <div>
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            </section>
+            <section>
+            <h2 class="section-title">Booking Details</h2>
+            
+            <div>
+                <label for="checkin">Check-in Date:</label>
+                <input type="date" id="checkin" name="checkin" required>
+            </div>
+            
+            <div>
+                <label for="checkout">Check-out Date:</label>
+                <input type="date" id="checkout" name="checkout" required>
+            </div>
+
+            <div>
+                <label for="guests">Number of Guests:</label>
+                <input type="number" id="guests" name="guests" min="1" required>
+            </div>
+            
+            <div class="room-type-options">
+                <label>Room Type:</label>
+                <div class="radio-options">
+                    <label><input type="radio" name="roomType" value="Single" required> Single</label>
+                    <label><input type="radio" name="roomType" value="Double"> Double</label>
+                    <label><input type="radio" name="roomType" value="Suite"> Suite</label>
+                </div>
+            </div>
+          </section>
+          <section class="grid-container">
+            <h2 class="section-title">Signature</h2>
+            </section>
+            <section>
+            <h2 class="section-title">Payment Information</h2>
+
+            <div class="signature-group">
+                <label for="signature">Signature:</label>
+                <textarea rows="8" cols="30" id="signature" name="signature"></textarea>
+                <span class="guest-signature-text">Guest Signature</span>
+            </div>
+            
+            <div>
+                <label for="total">Total Cost $:</label>
+                <input type="number" id="total" name="total" step="0.01" required>
+            </div>
+
+            <div class="full-width-field">
+                <label>Payment Method:</label>
+                <div class="radio-options">
+                    <label><input type="radio" name="paymentMethod" value="Credit/Debit Card" required> Credit/Debit Card</label>
+                    <label><input type="radio" name="paymentMethod" value="Cash"> Cash</label>
+                </div>
+            </div>
+           </section> 
+        </div> <button type="submit">Submit Booking</button>
+
+        <footer class="footer-image">
+            <img src="https://via.placeholder.com/900x200?text=Crown+Kingdom+Resort" alt="Crown Kingdom Resort Footer">
+        </div>
+    </form>
+</body>
+</html>
