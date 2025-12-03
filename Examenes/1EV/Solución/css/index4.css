@@ -1,0 +1,402 @@
+/* ==========================================================================
+   1. CONFIGURACIÓN Y VARIABLES (RA2.CE f)
+   ========================================================================== */
+
+/* Importación de Fuentes */
+@font-face {
+    font-family: 'titillium';
+    src: url('../assets/fonts/TitilliumWeb-ExtraLight.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'poppins';
+    src: url('../assets/fonts/Poppins-Light.ttf') format('truetype');
+}
+
+/* Variables Globales */
+:root {
+    --color-primario: #dd5533;
+    /* Naranja corporativo */
+    --color-texto: #535353;
+    /* Gris Oscuro */
+    --color-fondo: #EAEAEA;
+    /* Gris Claro Fondo */
+    --color-caja: #f7f6f6;
+    /* Fondo Tarjetas */
+    --color-blanco: #ffffff;
+
+    /* Variables Tabla */
+    --bg-tabla-th1: rgba(128, 128, 128, 0.26);
+    --bg-tabla-th2: rgba(194, 194, 194, 0.26);
+}
+
+/* Reset Básico */
+* {
+    box-sizing: border-box;
+}
+
+/* Reset imprescindible para <figure> */
+figure {
+    margin: 0;
+    padding: 0;
+}
+
+/* ==========================================================================
+   2. ESTILOS GENERALES (Body e Imágenes)
+   ========================================================================== */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'poppins', sans-serif;
+    font-size: 1rem;
+    color: var(--color-texto);
+    background-color: var(--color-fondo);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 0.3rem;
+}
+
+/* ==========================================================================
+   3. CABECERA Y MENÚ (Común)
+   ========================================================================== */
+
+header {
+    width: 100%;
+    background: url('../assets/images/fondomenu.jpg') repeat-x center;
+    padding: 1rem 0;
+    font-family: 'poppins', sans-serif;
+    font-weight: bold;
+    font-variant: small-caps;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+header nav ul {
+    max-width: 75rem;
+    /* 1200px */
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+    font-size: 0;
+    /* Eliminar espacio entre inline-blocks */
+}
+
+header nav ul li {
+    display: inline-block;
+    font-size: 1.2rem;
+    /* Restaurar fuente */
+}
+
+header nav ul li a {
+    display: block;
+    padding: 0.3rem 1.8rem;
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s;
+}
+
+/* Interacción Hover */
+header nav ul li a:hover {
+    color: var(--color-primario);
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   4. LAYOUT PRINCIPAL (Columnas del Index)
+   ========================================================================== */
+
+main {
+    max-width: 75rem;
+    /* 1200px */
+    margin: 2rem auto;
+    font-size: 0;
+    /* Eliminar huecos inline-block */
+}
+
+/* Selector para restaurar la fuente en todos los hijos directos del main */
+main>* {
+    font-size: 1rem;
+}
+
+/* -- Columna Izquierda (Artículos) -- */
+/* Usamos :not(.gallery) para que esta regla NO afecte a la página de galería */
+main>section:not(.gallery):not(.table-container) {
+    display: inline-block;
+    vertical-align: top;
+    width: 70%;
+    margin-right: 2%;
+    /* Espacio entre columnas */
+}
+
+/* -- Columna Derecha (Aside) -- */
+aside {
+    display: inline-block;
+    vertical-align: top;
+    width: 28%;
+}
+
+/* ==========================================================================
+   5. DISEÑO DE TARJETAS (Estilo Compartido)
+   ========================================================================== */
+
+/* Se aplica a Artículos, Banners del Aside y Fotos de Galería */
+article,
+aside figure,
+.image {
+    background-color: var(--color-caja);
+    border-top: 3px solid var(--color-primario);
+    padding: 1.75rem;
+    margin-bottom: 2rem;
+    border-radius: 0.3rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Títulos H2 dentro de las tarjetas */
+article h2,
+.gallery__title {
+    font-family: 'titillium', sans-serif;
+    font-size: 1.75rem;
+    font-variant: small-caps;
+    color: var(--color-primario);
+    margin-top: 1rem;
+    margin-bottom: 0.6rem;
+}
+
+article p {
+    text-align: justify;
+    line-height: 1.5;
+}
+
+/* -- BOTÓN "SEGUIR LEYENDO" -- */
+article footer {
+    margin-top: 1.25rem;
+    text-align: right;
+}
+
+article footer a {
+    display: inline-block;
+    background-color: var(--color-primario);
+    color: var(--color-blanco);
+    padding: 0.6rem 1.25rem;
+    text-decoration: none;
+    border-radius: 0.2rem;
+    border: 1px solid var(--color-primario);
+    font-size: 0.9rem;
+    width: 10.6rem;
+    text-align: center;
+}
+
+article footer a:hover {
+    background-color: var(--color-blanco);
+    color: var(--color-primario);
+}
+
+/* Imágenes del Aside */
+aside figure img {
+    width: 100%;
+    height: auto;
+}
+
+/* ==========================================================================
+   6. ESTILOS ESPECÍFICOS DE GALERÍA (galeria.html)
+   ========================================================================== */
+
+/* Contenedor de Galería */
+.gallery {
+    width: 100%;
+    text-align: center;
+    font-size: 0;
+    /* Para inline-block perfecto */
+    margin-bottom: 40px;
+}
+
+.gallery__title {
+    font-size: 2.2rem;
+    text-align: left;
+    margin-bottom: 20px;
+    width: 100%;
+    display: block;
+}
+
+/* -- TARJETA INDIVIDUAL (.image) -- */
+/* Esta clase se aplica a la etiqueta <figure> */
+.image {
+    /* Medidas exactas del enunciado */
+    width: 18.6rem;
+    height: 14.5rem;
+
+    /* Layout */
+    display: inline-block;
+    vertical-align: top;
+    font-size: 1rem;
+
+    /* Estilos Específicos */
+    padding: 15px;
+    margin: 15px 10px;
+
+    /* Sombra desplazada (Derecha y Abajo) */
+    box-shadow: 2px 2px 4px #aaa;
+}
+
+.image img {
+    width: 100%;
+    height: 80%;
+    /* Espacio para texto */
+    object-fit: cover;
+    border-radius: 0.25rem;
+}
+
+/* Texto pie de foto */
+.image__text {
+    font-size: 0.9rem;
+    color: var(--color-primario);
+    font-weight: bold;
+    font-variant: small-caps;
+    text-align: right;
+    margin-top: 10px;
+    margin-right: 5px;
+}
+
+/* ==========================================================================
+   7. ESTILOS DE TABLA (galeria.html)
+   ========================================================================== */
+
+/* Contenedor para asegurar ancho completo en el layout */
+.table-container,
+section:has(table) {
+    width: 100%;
+    display: block;
+}
+
+table {
+    width: 90%;
+    margin: 1.25rem auto;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 1rem;
+    /* Restaurar tamaño */
+}
+
+table th,
+table td {
+    border: 1px solid gray;
+    padding: 0.6rem;
+}
+
+/* Encabezados */
+table thead tr:first-child th {
+    background-color: var(--bg-tabla-th1);
+    font-size: 1.5rem;
+    font-variant: small-caps;
+    color: var(--color-primario);
+}
+
+table thead tr:nth-child(2) th {
+    background-color: var(--bg-tabla-th2);
+    font-size: 1rem;
+    color: var(--color-primario);
+}
+
+/* Pie */
+table tfoot td {
+    background-color: var(--bg-tabla-th2);
+    font-size: 0.8rem;
+    text-align: right;
+    font-style: italic;
+    color: var(--color-primario);
+}
+
+/* ==========================================================================
+   8. ESTILOS DE FORMULARIO (citas.html) - Básicos
+   ========================================================================== */
+form {
+    width: 100%;
+    background: var(--color-caja);
+    padding: 2rem;
+    border-radius: 5px;
+    border-top: 3px solid var(--color-primario);
+    font-size: 1rem;
+}
+
+form label {
+    display: block;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+form input,
+form select,
+form textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+/* ==========================================================================
+   9. PIE DE PÁGINA (Común)
+   ========================================================================== */
+
+body>footer {
+    max-width: 75rem;
+    margin: 2.5rem auto;
+    border-top: 1px solid #ccc;
+    padding-top: 2rem;
+    text-align: center;
+    font-size: 0;
+}
+
+body>footer section {
+    display: inline-block;
+    vertical-align: top;
+    width: 12.5rem;
+    text-align: left;
+    font-size: 1rem;
+    margin: 0 2rem;
+}
+
+body>footer h2 {
+    font-size: 1.1rem;
+    font-variant: small-caps;
+    color: var(--color-primario);
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 0.6rem;
+}
+
+body>footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+body>footer li {
+    margin-bottom: 0.3rem;
+}
+
+body>footer a {
+    text-decoration: none;
+    color: inherit;
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+body>footer a:hover {
+    color: var(--color-primario);
+    text-decoration: underline;
+}
+
+/* --- ENLACES DE COLORES (BONUS) --- */
+body>footer a[href^="/"],
+body>footer a[href^="#"],
+body>footer a[href^="."] {
+    color: green;
+}
+
+body>footer a[href^="http"] {
+    color: blueviolet;
+}
